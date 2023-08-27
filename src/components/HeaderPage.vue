@@ -21,7 +21,9 @@
                 class="w-[2.3rem] border-2 border-transparent rounded-full hover:border-orange transition-all duration-300">
         </div>
     </div>
-    <ItemCart v-if="screenSize > 1024" :class="'mt-16 right-0 translate-y-[0%] shadow-xl w-[30%]'" v-show="cart" />
+    <ItemCart
+        :class="{ 'mt-[4rem] left-1/2 w-[90%] -translate-x-1/2 p-4 shadow-md': screenSize < 1024, 'mt-16 right-0 translate-y-[0%] shadow-xl w-[30%]': screenSize > 1024 }"
+        v-show="cart" />
 
     <hr v-if="screenSize > 1024" class="mb-10 opacity-5">
 </template>
@@ -33,6 +35,7 @@ import { useItemCartStore } from '@/stores/itemCartStore';
 import { storeToRefs } from 'pinia'
 import DesktopMenu from '@/components/DesktopMenu.vue'
 import ItemCart from '@/components/ItemCart.vue'
+import { useRouter } from 'vue-router';
 
 const itemCartStore = useItemCartStore()
 
@@ -51,5 +54,15 @@ onMounted(() => {
 window.addEventListener('resize', () => {
     screenSize.value = window.innerWidth
 })
+
+const router = useRouter()
+
+router.beforeEach((to, from, next) => {
+    console.log(cart.value)
+    cart.value = false
+    next()
+})
+
+
 
 </script>

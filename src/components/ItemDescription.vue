@@ -1,5 +1,5 @@
 <template>
-    <div class="px-8 py-6">
+    <div class="px-8 py-6 relative z-25">
         <p class="text-orange font-[700] tracking-widest text-sm mb-2 lg:mb-4">SNEAKER COMPANY</p>
         <h1 class="text-black text-4xl font-[700] mb-2 lg:text-6xl lg:mb-6">{{ selectedProduct.name }}</h1>
 

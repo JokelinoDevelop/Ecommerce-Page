@@ -11,8 +11,6 @@
             <img v-if="screenSize < 1024" src="@/assets/icon-next.svg"
                 class="absolute top-1/2 right-0 -translate-y-1/2 mr-6 bg-white px-4 py-3 rounded-full hover:cursor-pointer"
                 @click="nextImage">
-
-            <ItemCart v-if="screenSize < 1024" v-show="cart" :class="'left-1/2 w-[90%] -translate-x-1/2 p-4 shadow-md '" />
         </div>
 
         <div v-if="screenSize > 1024" class="flex justify-center gap-3 mt-4 items-center">
@@ -28,8 +26,6 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
-import ItemCart from '@/components/ItemCart.vue'
-
 
 import { useMenuToggleStore } from '@/stores/menuToggleStore'
 import { useProductStore } from '@/stores/productStore'
@@ -42,7 +38,7 @@ const productStore = useProductStore();
 
 const selectedProduct = productStore.getSelectedProduct;
 
-const { cart, galleryPop } = storeToRefs(store)
+const { galleryPop } = storeToRefs(store)
 
 const images = computed(() => selectedProduct.images || [])
 

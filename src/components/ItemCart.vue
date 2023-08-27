@@ -1,9 +1,10 @@
 <template>
     <transition name="slide">
-        <div class="absolute top-3 bg-white z-50 rounded-lg p-4">
+        <div class="absolute top-3 bg-white z-[45] rounded-lg p-4">
             <p class="mb-3 font-[700]">Cart</p>
             <hr>
-            <div class="mt-3 grid gap-2" :class="{ 'py-12': cartItems.length < 1, 'py-4': cartItems.length > 0 }">
+            <div class="mt-3 grid gap-2 max-h-[200px] overflow-y-auto pr-2"
+                :class="{ 'py-12': cartItems.length < 1, 'py-4': cartItems.length > 0 }">
                 <template v-if="cartItems.length > 0">
                     <div v-for="item in cartItems" :key="item.name">
                         <ItemCartProduct :item=item />

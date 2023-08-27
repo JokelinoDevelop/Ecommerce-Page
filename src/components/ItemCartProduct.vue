@@ -1,29 +1,26 @@
 <template>
-    <div class="flex justify-between items-center">
-        <img :src="img.src" class="w-16 rounded-md shadow-md">
-        <div>
+    <div class="flex justify-between items-center gap-4">
+        <div class="flex items-center gap-4">
+            <img :src="props.item.thumbnailImages[0].src" class="w-16 rounded-md shadow-md">
             <p class="text-darkGrayishBlue">{{ props.item.name }}</p>
-            <p class="text-darkGrayishBlue">${{ calculatedPrice }}.00 x {{ props.item.quantity }} <span
-                    class="font-[700] text-black">${{ itemPrice }}.00</span></p>
+
         </div>
-        <img class="hover:cursor-pointer" src="@/assets/icon-delete.svg" alt="" @click="deleteItem(props.item.id)">
+
+        <div class="flex items-center justify-center">
+            <div>
+                <p class="text-darkGrayishBlue">${{ calculatedPrice }}.00 x {{ props.item.quantity }}</p>
+                <p class="font-[700] text-black block">${{ itemPrice }}.00</p>
+            </div>
+
+            <img class="hover:cursor-pointer ml-4" src="@/assets/icon-delete.svg" alt="" @click="deleteItem(props.item.id)">
+        </div>
+
     </div>
 </template>
 
 <script setup>
 import { computed } from 'vue';
 import { useItemCartStore } from '@/stores/itemCartStore';
-import { useProductStore } from '@/stores/productStore';
-
-const productStore = useProductStore()
-
-const { selectedProduct } = productStore
-
-const img = computed(() => {
-    return selectedProduct.thumbnailImages[0]
-})
-
-console.log(img.value)
 
 const store = useItemCartStore()
 
